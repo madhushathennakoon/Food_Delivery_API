@@ -15,6 +15,8 @@ const placeOrder = async (req, res) => {
       zip_code,
       country,
       phone,
+      nameQty,
+      total,
     } = req.body;
 
     //Validation
@@ -53,6 +55,8 @@ const placeOrder = async (req, res) => {
       zip_code,
       country,
       phone,
+      nameQty,
+      total,
     });
 
     return res.status(201).json({ order });
@@ -62,4 +66,14 @@ const placeOrder = async (req, res) => {
   }
 };
 
-module.exports = placeOrder;
+//Get All Orders
+const getAllOrders = async (req, res) => {
+  try {
+    const allOrders = await orderModel.find().sort({ createdAt: -1 });
+    res.status(200).json(allOrders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { placeOrder, getAllOrders };

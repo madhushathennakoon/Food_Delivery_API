@@ -38,6 +38,12 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    nameQty: {
+      type: [String],
+    },
+    total: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
